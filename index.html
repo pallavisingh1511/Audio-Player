@@ -6,11 +6,11 @@
     <body>
         <div id="container">
             <div id="audio-image">
-                <img class="cover">
+                <img src="images/covers/brunoMars.jpg" class="cover">
             </div>
             <div id="audio-player">
                 <div id="audio-info">
-                    <span class="artist"></span> - <span class="title"></span>
+                    <span class="artist">Bruno Mars</span> - <span class="title">Grenade.mp3</span>
                 </div>
                 <input id="volume" type="range" min="0" max="10" value="4">
                 <br>
@@ -24,15 +24,15 @@
                     </span>
                 </div>
                 <div class="clearfix"></div>
-                <div class="tracker">
-                    <div class="progressBar">
+                <div id="tracker">
+                    <div id="progress-bar">
                         <span id="progress"></span>                    
                     </div>
-                    <span id="duration"></span> 
+                    <span id="duration">0:00</span> 
                 </div>
                 <div class="clearfix"></div>
                 <ul id="playlist" class="hidden">
-                    <li song="01. Grenade.mp3" cover="brunoMars.jpeg" artist="Bruno Mars">Grenade.mp3</li>
+                    <li class="active" song="01. Grenade.mp3" cover="brunoMars.jpeg" artist="Bruno Mars">Grenade.mp3</li>
                     <li song="02. Just the Way You Are (Amazing).p3" cover="brunoMars.jpeg" artist="Bruno Mars">Just the Way You Are (Amazing).mp3</li>
                     <li song="03. It Will Rain.mp3" cover="brunoMars.jpeg" artist="Bruno Mars">It Will Rain.mp3</li>
                     <li song="04. The Lazy Song.mp3" cover="brunoMars.jpeg" artist="Bruno Mars">The Lazy Song.mp3</li>
