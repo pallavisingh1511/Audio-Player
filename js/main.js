@@ -1,8 +1,9 @@
 var audio;
 
-//Hide Pause
+//Hide Pause Button
 $('#pause').hide();
 
+//Select the first song in the list on load of the player
 initAudio($('#playlist li:first-child'));
 
 function initAudio(element){
@@ -11,7 +12,7 @@ function initAudio(element){
     var cover = element.attr('cover');
     var artist = element.attr('artist');
     
-    //Create audio object
+    //Create audio object, taking song name as 
     
     audio = new Audio('media/' + song);
     
@@ -19,16 +20,15 @@ function initAudio(element){
     $('.artist').text(artist);
     $('.title').text(title);
     
-    //Insert song cover
-    $('img.cover').text('src','images/covers/'+ cover);
+    //Insert song cover image
+    $('img.cover').attr('src','images/covers/' + cover);
     
     $('#playlist li').removeClass('active');
     element.addClass('active');
     
 }
 
-
-//Play button
+//Play button : To play a song
 $('#play').click(function(){
     audio.play();
     $('#play').hide();
@@ -36,14 +36,14 @@ $('#play').click(function(){
     showDuration();
 });
 
-//Pause button
+//Pause button : To pause a song
 $('#pause').click(function(){
     audio.pause();
     $('#pause').hide();
     $('#play').show();
 });
 
-//Stop button
+//Stop button : To stop a song
 $('#stop').click(function(){
     audio.pause();
     audio.currentTime = 0;
@@ -51,38 +51,51 @@ $('#stop').click(function(){
     $('#play').show();
 });
 
-//Next button
+//To play the next song in the playlist (for the last song it will play the first song)
 $('#next').click(function(){
     audio.pause();
     var next = $('#playlist li.active').next();
     if(next.length == 0){
         next = $('#playlist li:first-child');
     }
-   
+    $('#pause').show();
+    $('#play').hide();
     initAudio(next);
     audio.play();
     showDuration();
 });
 
-//Previous button
-$('#prev').click(function(){
+//To play the previous song in the playlist (for the first song it will play the last song)
+$('#previous').click(function(){
     audio.pause();
-    var prev = $('#playlist li.active').prev();
-    if(prev.length == 0){
-        prev = $('#playlist li:last-child');
+    var previous = $('#playlist li.active').prev();
+    if(previous.length == 0){
+        previous = $('#playlist li:last-child');
     }
    
-    initAudio(prev);
+    $('#pause').show();
+    $('#play').hide();
+    initAudio(previous);
     audio.play();
     showDuration();
 });
 
-//Volume Control
+//To play songs when clicked on in the playlist
+$('#playlist li').click(function(){
+    audio.pause();    
+    initAudio($(this));
+    $('#play').hide();
+    $('#pause').show();
+    showDuration();
+    audio.play();   
+});
+
+//To control the volume level
 $('#volume').change(function(){
     audio.volume = parseFloat(this.value / 10);
 });
 
-//Time/Duration
+//To display the time passed and the progress bar while a song plays
 function showDuration(){
     $(audio).bind('timeupdate',function(){
     //Get hours and minutes
@@ -94,9 +107,9 @@ function showDuration(){
         $('#duration').html(m + ':' + s);
         var value = 0;
         if(audio.currentTime > 0 ){
-            value = Math.floor((100 / audio.duration) * audio.currentTime);              
+            value = (100 / audio.duration) * audio.currentTime;              
         }
 
-        $('#progress').css('width', value + '%');
+        $('#progress-bar').css('width', value + '%');
     });
 }
