@@ -55,9 +55,24 @@ $('#stop').click(function(){
 $('#next').click(function(){
     audio.pause();
     var next = $('#playlist li.active').next();
-    if(next.length == 0)
-        next = $('#playlist li.first-child');
+    if(next.length == 0){
+        next = $('#playlist li:first-child');
+    }
+   
     initAudio(next);
+    audio.play();
+    showDuration();
+});
+
+//Previous button
+$('#prev').click(function(){
+    audio.pause();
+    var prev = $('#playlist li.active').prev();
+    if(prev.length == 0){
+        prev = $('#playlist li:last-child');
+    }
+   
+    initAudio(prev);
     audio.play();
     showDuration();
 });
