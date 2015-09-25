@@ -1,7 +1,32 @@
-var audio = new Audio('media/01. Grenade.mp3');
+var audio;
 
 //Hide Pause
 $('#pause').hide();
+
+initAudio($('#playlist li:first-child'));
+
+function initAudio(element){
+    var song = element.attr('song');
+    var title = element.text();
+    var cover = element.attr('cover');
+    var artist = element.attr('artist');
+    
+    //Create audio object
+    
+    audio = new Audio('media/' + song);
+    
+    //Insert audio info
+    $('.artist').text(artist);
+    $('.title').text(title);
+    
+    //Insert song cover
+    $('img.cover').text('src','images/covers/'+ cover);
+    
+    $('#playlist li').removeClass('active');
+    element.addClass('active');
+    
+}
+
 
 //Play button
 $('#play').click(function(){
@@ -24,6 +49,17 @@ $('#stop').click(function(){
     audio.currentTime = 0;
     $('#pause').hide();
     $('#play').show();
+});
+
+//Next button
+$('#next').click(function(){
+    audio.pause();
+    var next = $('#playlist li.active').next();
+    if(next.length == 0)
+        next = $('#playlist li.first-child');
+    initAudio(next);
+    audio.play();
+    showDuration();
 });
 
 //Volume Control
