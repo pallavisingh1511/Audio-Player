@@ -10,13 +10,7 @@ body{
     font-size: 13px;
     line-height: 1.5em;
     color:#fff;
-    background: #78284a;
-    background: -moz-linear-gradient(left, #648880 0%, #293f50 100%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #648880), color-stop(100%, #293f50));   
-    background: -webkit-linear-gradient(left, #648880 0%, #293f50 100%);
-    background: -o-linear-gradient(left, #648880 0%, #293f50 100%);
-    background: -ms-linear-gradient(left, #648880 0%, #293f50 100%);
-    background: linear-gradient(to right, #648880 0%, #293f50 100%);
+	background: url(../images/corkboard.jpg) no-repeat;
 }
 
 .clearfix{
@@ -28,7 +22,7 @@ body{
     min-height: 400px;
     background: #333;
     overflow: auto;
-    margin: 50px auto;
+    margin: 45px auto;
     border-radius: 10px;
     box-shadow: 0 10px 8px -8px #333;
 }
